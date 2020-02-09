@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;MyFirstEditorCustom&apos;&#x0D;&#x0A;- Original project: &apos;MyFirstEditorCustom&apos;&#x0D;&#x0A;- Original element: &apos;MyFirstEditorCustom/src-gen/myFirstEditorCustom&apos;&#x0D;&#x0A;- Delete subpackages" description="Delete element" element1="/src-gen&lt;myFirstEditorCustom.util" element2="/src-gen&lt;myFirstEditorCustom.impl" element3="/src-gen&lt;myFirstEditorCustom" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1580217975205" subPackages="true" version="1.0"/>
+</session>

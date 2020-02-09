@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated myFirstEditorCustom -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="myFirstEditorCustom.presentation.MyFirstEditorCustomModelWizardID"
+            name="%_UI_MyFirstEditorCustomModelWizard_label"
+            class="myFirstEditorCustom.presentation.MyFirstEditorCustomModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MyFirstEditorCustomModelFile.gif">
+         <description>%_UI_MyFirstEditorCustomModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated myFirstEditorCustom -->
+      <editor
+            id="myFirstEditorCustom.presentation.MyFirstEditorCustomEditorID"
+            name="%_UI_MyFirstEditorCustomEditor_label"
+            icon="icons/full/obj16/MyFirstEditorCustomModelFile.gif"
+            extensions="myfirsteditorcustom"
+            class="myFirstEditorCustom.presentation.MyFirstEditorCustomEditor"
+            contributorClass="myFirstEditorCustom.presentation.MyFirstEditorCustomActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
