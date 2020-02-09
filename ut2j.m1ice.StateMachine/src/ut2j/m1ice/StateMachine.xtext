@@ -18,6 +18,7 @@ StateMachine:
 State:
 'State' 
 name=EString
+type=EString
 ;
 Transition:
 'Transition' name=EString	

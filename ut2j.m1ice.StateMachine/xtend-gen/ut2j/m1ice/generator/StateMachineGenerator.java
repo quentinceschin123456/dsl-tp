@@ -36,6 +36,10 @@ public class StateMachineGenerator extends AbstractGenerator {
       this.templateStateMachineClass(stateMachine));
     fsa.generateFile("State.java", 
       this.templateStateClass(stateMachine.getState().get(0)));
+    fsa.generateFile("EndState.java", 
+      this.templateEndState());
+    fsa.generateFile("StartState.java", 
+      this.templateStartState());
     fsa.generateFile("Transition.java", 
       this.templateTransitionClass(stateMachine.getTransition().get(0)));
     fsa.generateFile("StateType.java", 
@@ -133,6 +137,51 @@ public class StateMachineGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t");
+    _builder.append("State(String name, String type) {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("this.name = name;");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("if (type.equals(\"on\"))");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("switch (type) {");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("case \"on\":");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("this.type = StateType.On ;");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("break;");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("case \"off\":");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("this.type = StateType.Off;");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("break;");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("default:");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("this.type = StateType.Other;");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("break;");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Override");
@@ -157,6 +206,54 @@ public class StateMachineGenerator extends AbstractGenerator {
     return _builder;
   }
   
+  public CharSequence templateStartState() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class StartState extends State{");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("StartState(String name){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("super(name,StateType.First);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence templateEndState() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class EndState extends State{");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("EndState(String name){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("super(name,StateType.Final);");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
   public CharSequence templateEnumType() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public enum StateType {");
@@ -171,7 +268,10 @@ public class StateMachineGenerator extends AbstractGenerator {
     _builder.append("On,");
     _builder.newLine();
     _builder.append("\t\t\t  ");
-    _builder.append("Off;\t");
+    _builder.append("Off,");
+    _builder.newLine();
+    _builder.append("\t\t\t  ");
+    _builder.append("Other;\t");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("}");
@@ -372,21 +472,54 @@ public class StateMachineGenerator extends AbstractGenerator {
     {
       EList<State> _state = sm.getState();
       for(final State state : _state) {
+        {
+          boolean _equals = state.getClass().getName().equals("myFirstEditorCustom.impl.StartStateImpl");
+          if (_equals) {
+            _builder.append("\t");
+            _builder.append("State ");
+            String _name_2 = state.getName();
+            _builder.append(_name_2, "\t");
+            _builder.append(" = new StartState(\"");
+            String _name_3 = state.getName();
+            _builder.append(_name_3, "\t");
+            _builder.append("\");\t\t\t\t\t\t\t\t\t\t\t\t");
+            _builder.newLineIfNotEmpty();
+          } else {
+            {
+              boolean _equals_1 = state.getClass().getName().equals("myFirstEditorCustom.impl.EndStateImpl");
+              if (_equals_1) {
+                _builder.append("\t");
+                _builder.append("State ");
+                String _name_4 = state.getName();
+                _builder.append(_name_4, "\t");
+                _builder.append(" = new EndState(\"");
+                String _name_5 = state.getName();
+                _builder.append(_name_5, "\t");
+                _builder.append("\");\t\t\t\t\t\t\t\t\t\t\t\t");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t");
+                _builder.append("State ");
+                String _name_6 = state.getName();
+                _builder.append(_name_6, "\t");
+                _builder.append(" = new State(\"");
+                String _name_7 = state.getName();
+                _builder.append(_name_7, "\t");
+                _builder.append("\",\"");
+                String _type = state.getType();
+                _builder.append(_type, "\t");
+                _builder.append("\");");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
         _builder.append("\t");
-        _builder.append("State ");
-        String _name_2 = state.getName();
-        _builder.append(_name_2, "\t");
-        _builder.append(" = new State(\"");
-        String _name_3 = state.getName();
-        _builder.append(_name_3, "\t");
-        _builder.append("\",StateType.On);");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        String _name_4 = sm.getName();
-        _builder.append(_name_4, "\t");
+        String _name_8 = sm.getName();
+        _builder.append(_name_8, "\t");
         _builder.append(".states.add(");
-        String _name_5 = state.getName();
-        _builder.append(_name_5, "\t");
+        String _name_9 = state.getName();
+        _builder.append(_name_9, "\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
@@ -396,47 +529,47 @@ public class StateMachineGenerator extends AbstractGenerator {
       for(final Transition trans : _transition) {
         _builder.append("\t");
         _builder.append("Transition ");
-        String _name_6 = trans.getName();
-        _builder.append(_name_6, "\t");
+        String _name_10 = trans.getName();
+        _builder.append(_name_10, "\t");
         _builder.append(" = new Transition(\"");
-        String _name_7 = trans.getName();
-        _builder.append(_name_7, "\t");
+        String _name_11 = trans.getName();
+        _builder.append(_name_11, "\t");
         _builder.append("\",");
-        String _name_8 = trans.getSource().getName();
-        _builder.append(_name_8, "\t");
+        String _name_12 = trans.getSource().getName();
+        _builder.append(_name_12, "\t");
         _builder.append(",");
-        String _name_9 = trans.getTarget().getName();
-        _builder.append(_name_9, "\t");
+        String _name_13 = trans.getTarget().getName();
+        _builder.append(_name_13, "\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
-        String _name_10 = sm.getName();
-        _builder.append(_name_10, "\t");
+        String _name_14 = sm.getName();
+        _builder.append(_name_14, "\t");
         _builder.append(".transitions.add(");
-        String _name_11 = trans.getName();
-        _builder.append(_name_11, "\t");
+        String _name_15 = trans.getName();
+        _builder.append(_name_15, "\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
     }
     _builder.append("\t");
     _builder.append("System.out.println(");
-    String _name_12 = sm.getName();
-    _builder.append(_name_12, "\t");
+    String _name_16 = sm.getName();
+    _builder.append(_name_16, "\t");
     _builder.append(".toString());");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("for (Transition trans : ");
-    String _name_13 = sm.getName();
-    _builder.append(_name_13, "\t");
+    String _name_17 = sm.getName();
+    _builder.append(_name_17, "\t");
     _builder.append(".transitions) {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
-    String _name_14 = sm.getName();
-    _builder.append(_name_14, "\t\t\t");
+    String _name_18 = sm.getName();
+    _builder.append(_name_18, "\t\t\t");
     _builder.append(".currentState = trans.change(");
-    String _name_15 = sm.getName();
-    _builder.append(_name_15, "\t\t\t");
+    String _name_19 = sm.getName();
+    _builder.append(_name_19, "\t\t\t");
     _builder.append(".currentState);");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -446,8 +579,8 @@ public class StateMachineGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("System.out.println(");
-    String _name_16 = sm.getName();
-    _builder.append(_name_16, "\t");
+    String _name_20 = sm.getName();
+    _builder.append(_name_20, "\t");
     _builder.append(".toString());");
     _builder.newLineIfNotEmpty();
     _builder.append("}");

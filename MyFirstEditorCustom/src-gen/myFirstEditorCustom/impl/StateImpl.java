@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link myFirstEditorCustom.impl.StateImpl#getName <em>Name</em>}</li>
  *   <li>{@link myFirstEditorCustom.impl.StateImpl#getOut <em>Out</em>}</li>
  *   <li>{@link myFirstEditorCustom.impl.StateImpl#getIn <em>In</em>}</li>
+ *   <li>{@link myFirstEditorCustom.impl.StateImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,6 +75,26 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * @ordered
 	 */
 	protected EList<Transition> in;
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -147,6 +168,28 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType) {
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MyFirstEditorCustomPackage.STATE__TYPE, oldType,
+					type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -189,6 +232,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 			return getOut();
 		case MyFirstEditorCustomPackage.STATE__IN:
 			return getIn();
+		case MyFirstEditorCustomPackage.STATE__TYPE:
+			return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,6 +258,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 			getIn().clear();
 			getIn().addAll((Collection<? extends Transition>) newValue);
 			return;
+		case MyFirstEditorCustomPackage.STATE__TYPE:
+			setType((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -234,6 +282,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 		case MyFirstEditorCustomPackage.STATE__IN:
 			getIn().clear();
 			return;
+		case MyFirstEditorCustomPackage.STATE__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -252,6 +303,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 			return out != null && !out.isEmpty();
 		case MyFirstEditorCustomPackage.STATE__IN:
 			return in != null && !in.isEmpty();
+		case MyFirstEditorCustomPackage.STATE__TYPE:
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -269,6 +322,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", type: ");
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

@@ -56,6 +56,7 @@ public class StateItemProvider extends ItemProviderAdapter implements IEditingDo
 			addNamePropertyDescriptor(object);
 			addOutPropertyDescriptor(object);
 			addInPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -101,6 +102,21 @@ public class StateItemProvider extends ItemProviderAdapter implements IEditingDo
 						getResourceLocator(), getString("_UI_State_in_feature"),
 						getString("_UI_PropertyDescriptor_description", "_UI_State_in_feature", "_UI_State_type"),
 						MyFirstEditorCustomPackage.Literals.STATE__IN, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_State_type_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_State_type_feature", "_UI_State_type"),
+						MyFirstEditorCustomPackage.Literals.STATE__TYPE, true, false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -150,6 +166,7 @@ public class StateItemProvider extends ItemProviderAdapter implements IEditingDo
 
 		switch (notification.getFeatureID(State.class)) {
 		case MyFirstEditorCustomPackage.STATE__NAME:
+		case MyFirstEditorCustomPackage.STATE__TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

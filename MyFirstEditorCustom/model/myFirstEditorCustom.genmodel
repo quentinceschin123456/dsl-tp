@@ -18,6 +18,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute myFirstEditorCustom.ecore#//State/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference myFirstEditorCustom.ecore#//State/out"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference myFirstEditorCustom.ecore#//State/in"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute myFirstEditorCustom.ecore#//State/type"/>
     </genClasses>
     <genClasses ecoreClass="myFirstEditorCustom.ecore#//Transition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute myFirstEditorCustom.ecore#//Transition/name"/>

@@ -109,15 +109,18 @@ public class StateMachineSemanticSequencer extends AbstractDelegatingSemanticSeq
 	 *     State returns State
 	 *
 	 * Constraint:
-	 *     name=EString
+	 *     (name=EString type=EString)
 	 */
 	protected void sequence_State(ISerializationContext context, State semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, MyFirstEditorCustomPackage.Literals.STATE__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyFirstEditorCustomPackage.Literals.STATE__NAME));
+			if (transientValues.isValueTransient(semanticObject, MyFirstEditorCustomPackage.Literals.STATE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyFirstEditorCustomPackage.Literals.STATE__TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getStateAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getStateAccess().getTypeEStringParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	

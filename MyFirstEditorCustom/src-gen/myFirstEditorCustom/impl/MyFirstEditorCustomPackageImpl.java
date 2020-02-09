@@ -201,6 +201,15 @@ public class MyFirstEditorCustomPackageImpl extends EPackageImpl implements MyFi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getState_Type() {
+		return (EAttribute) stateEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTransition() {
 		return transitionEClass;
 	}
@@ -288,6 +297,7 @@ public class MyFirstEditorCustomPackageImpl extends EPackageImpl implements MyFi
 		createEAttribute(stateEClass, STATE__NAME);
 		createEReference(stateEClass, STATE__OUT);
 		createEReference(stateEClass, STATE__IN);
+		createEAttribute(stateEClass, STATE__TYPE);
 
 		transitionEClass = createEClass(TRANSITION);
 		createEAttribute(transitionEClass, TRANSITION__NAME);
@@ -352,6 +362,8 @@ public class MyFirstEditorCustomPackageImpl extends EPackageImpl implements MyFi
 		initEReference(getState_In(), this.getTransition(), this.getTransition_Source(), "in", null, 0, -1, State.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getState_Type(), ecorePackage.getEString(), "type", null, 0, 1, State.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

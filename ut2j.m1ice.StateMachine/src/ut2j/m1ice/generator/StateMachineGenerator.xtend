@@ -33,7 +33,12 @@ class StateMachineGenerator extends AbstractGenerator {
 			
 		fsa.generateFile('State.java', 
 			templateStateClass(stateMachine.state.get(0)));
-			
+		
+		fsa.generateFile('EndState.java', 
+			templateEndState());
+		
+		fsa.generateFile('StartState.java', 
+			templateStartState());
 			fsa.generateFile('Transition.java', 
 			templateTransitionClass(stateMachine.transition.get(0)));
 			fsa.generateFile('StateType.java', 
@@ -88,6 +93,21 @@ class StateMachineGenerator extends AbstractGenerator {
 				this.name = name;
 				this.type = t;
 			}
+			State(String name, String type) {
+					this.name = name;
+					if (type.equals("on"))
+						switch (type) {
+						case "on":
+							this.type = StateType.On ;
+							break;
+						case "off":
+							this.type = StateType.Off;
+							break;
+						default:
+							this.type = StateType.Other;
+							break;
+						}
+				}
 			
 			@Override
 			public String toString() {
@@ -99,13 +119,42 @@ class StateMachineGenerator extends AbstractGenerator {
 		}
 		'''
 	}
+	
+	def templateStartState(){
+		'''
+		public class StartState extends State{
+		
+		
+			StartState(String name){
+				super(name,StateType.First);
+			}
+		
+			
+			
+		}
+		'''
+	}
+	
+	def templateEndState(){
+		'''
+		public class EndState extends State{
+		
+			EndState(String name){
+				super(name,StateType.Final);
+			}
+			
+			
+		}
+		'''
+	}
 	def templateEnumType(){
 		'''
 		public enum StateType {
 					  Final,
 					  First,
 					  On,
-					  Off;	
+					  Off,
+					  Other;	
 					}
 		'''
 	}
@@ -192,7 +241,15 @@ class StateMachineGenerator extends AbstractGenerator {
 				
 				StateMachine «sm.name» = new StateMachine("«sm.name»");
 				«FOR state : sm.state»
-					State «state.name» = new State("«state.name»",StateType.On);
+					«IF state.class.name.equals("myFirstEditorCustom.impl.StartStateImpl")»
+						State «state.name» = new StartState("«state.name»");												
+					«ELSE»
+						«IF state.class.name.equals("myFirstEditorCustom.impl.EndStateImpl")»
+							State «state.name» = new EndState("«state.name»");												
+						«ELSE»
+							State «state.name» = new State("«state.name»","«state.type»");
+						«ENDIF»
+					«ENDIF»
 					«sm.name».states.add(«state.name»);
 				«ENDFOR»
 				«FOR trans : sm.transition»

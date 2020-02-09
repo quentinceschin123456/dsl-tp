@@ -463,6 +463,7 @@ rule__State__Group__1
 	}
 :
 	rule__State__Group__1__Impl
+	rule__State__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -477,6 +478,32 @@ rule__State__Group__1__Impl
 	{ before(grammarAccess.getStateAccess().getNameAssignment_1()); }
 	(rule__State__NameAssignment_1)
 	{ after(grammarAccess.getStateAccess().getNameAssignment_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__State__Group__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__State__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__State__Group__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getStateAccess().getTypeAssignment_2()); }
+	(rule__State__TypeAssignment_2)
+	{ after(grammarAccess.getStateAccess().getTypeAssignment_2()); }
 )
 ;
 finally {
@@ -865,6 +892,21 @@ rule__State__NameAssignment_1
 		{ before(grammarAccess.getStateAccess().getNameEStringParserRuleCall_1_0()); }
 		ruleEString
 		{ after(grammarAccess.getStateAccess().getNameEStringParserRuleCall_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__State__TypeAssignment_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getStateAccess().getTypeEStringParserRuleCall_2_0()); }
+		ruleEString
+		{ after(grammarAccess.getStateAccess().getTypeEStringParserRuleCall_2_0()); }
 	)
 ;
 finally {

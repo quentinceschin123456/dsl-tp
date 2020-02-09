@@ -149,13 +149,22 @@ public interface MyFirstEditorCustomPackage extends EPackage {
 	int STATE__IN = 2;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__TYPE = 3;
+
+	/**
 	 * The number of structural features of the '<em>State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_FEATURE_COUNT = 3;
+	int STATE_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>State</em>' class.
@@ -259,6 +268,15 @@ public interface MyFirstEditorCustomPackage extends EPackage {
 	int START_STATE__IN = STATE__IN;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int START_STATE__TYPE = STATE__TYPE;
+
+	/**
 	 * The number of structural features of the '<em>Start State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -312,6 +330,15 @@ public interface MyFirstEditorCustomPackage extends EPackage {
 	 * @ordered
 	 */
 	int END_STATE__IN = STATE__IN;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int END_STATE__TYPE = STATE__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>End State</em>' class.
@@ -416,6 +443,17 @@ public interface MyFirstEditorCustomPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getState_In();
+
+	/**
+	 * Returns the meta object for the attribute '{@link myFirstEditorCustom.State#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see myFirstEditorCustom.State#getType()
+	 * @see #getState()
+	 * @generated
+	 */
+	EAttribute getState_Type();
 
 	/**
 	 * Returns the meta object for class '{@link myFirstEditorCustom.Transition <em>Transition</em>}'.
@@ -570,6 +608,14 @@ public interface MyFirstEditorCustomPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STATE__IN = eINSTANCE.getState_In();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STATE__TYPE = eINSTANCE.getState_Type();
 
 		/**
 		 * The meta object literal for the '{@link myFirstEditorCustom.impl.TransitionImpl <em>Transition</em>}' class.

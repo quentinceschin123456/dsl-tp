@@ -228,6 +228,25 @@ ruleState returns [EObject current=null]
 				}
 			)
 		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getStateAccess().getTypeEStringParserRuleCall_2_0());
+				}
+				lv_type_2_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getStateRule());
+					}
+					set(
+						$current,
+						"type",
+						lv_type_2_0,
+						"ut2j.m1ice.StateMachine.EString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 

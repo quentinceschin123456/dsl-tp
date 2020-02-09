@@ -102,13 +102,16 @@ public class StateMachineGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStateKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTypeEStringParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
 		//State:
 		//	'State'
-		//	name=EString;
+		//	name=EString
+		//	type=EString;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'State' name=EString
+		//'State' name=EString type=EString
 		public Group getGroup() { return cGroup; }
 		
 		//'State'
@@ -119,6 +122,12 @@ public class StateMachineGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//EString
 		public RuleCall getNameEStringParserRuleCall_1_0() { return cNameEStringParserRuleCall_1_0; }
+		
+		//type=EString
+		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		
+		//EString
+		public RuleCall getTypeEStringParserRuleCall_2_0() { return cTypeEStringParserRuleCall_2_0; }
 	}
 	public class TransitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ut2j.m1ice.StateMachine.Transition");
@@ -319,7 +328,8 @@ public class StateMachineGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//State:
 	//	'State'
-	//	name=EString;
+	//	name=EString
+	//	type=EString;
 	public StateElements getStateAccess() {
 		return pState;
 	}
